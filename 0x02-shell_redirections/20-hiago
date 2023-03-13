@@ -1,7 +1,2 @@
 #!/bin/bash
-echo "Enter input:"
-read input
-
-output=$(echo "$input" | sed 's/[cC]//g')
-
-echo "Output: $output
+echo sed 's/[cC]//g'
