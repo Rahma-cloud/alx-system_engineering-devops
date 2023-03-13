@@ -1,0 +1,2 @@
+#!/bin/bash
+grep –n command bin/etc/passwd | cut –d: -f1
