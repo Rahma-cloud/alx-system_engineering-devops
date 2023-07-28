@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Task1
+cmd=$(ps -auxf)
+echo "$cmd"
