@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Task 1 by ray
+cmd=$(ps -auxf)
+echo "$cmd"

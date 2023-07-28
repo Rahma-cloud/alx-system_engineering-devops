@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This is for my task 2
+cmd=$(./1-list_your_processes | grep bash)
+echo "$cmd"
