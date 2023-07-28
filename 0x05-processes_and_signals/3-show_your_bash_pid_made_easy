@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This is for my task3
+cmd=$(pgrep -f bash -l)
+echo "$cmd"
