@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# task 7 baby
+message="I am invincible!!!"
+trap 'echo $message' SIGTERM
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
