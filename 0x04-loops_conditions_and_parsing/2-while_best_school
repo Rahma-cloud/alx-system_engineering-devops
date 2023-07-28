@@ -1,2 +1,7 @@
 #!usr/bin/env bash
-# This prints ten times too
+# This prints ten times to
+while {$i lt:x
+	10}: do
+	echo "Best School";
+	i++
+done
