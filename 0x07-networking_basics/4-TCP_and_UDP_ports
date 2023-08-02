@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Task 4
+cmd=$(netstat -lp)
+echo "$cmd"
