@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Task 1
+cmd=$(ifconfig | grep 'inet ' | awk '{print $2}') 
+echo "$cmd"
