@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # config file for my task
-Host 3.85.54.87
+Host 54.174.71.36
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
