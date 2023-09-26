@@ -3,6 +3,6 @@
 sudo apt-get update -y
 sudo apt-get install nginx -y
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
-myString="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
+myString="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\n\t}"
 sudo sed -i "/server_name _;/a $myString" /etc/nginx/sites-available/default
 sudo service nginx start
