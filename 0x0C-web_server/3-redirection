@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#Task3 this is to redirect my page
+if ! command -v nginx &> /dev/null; then
+  sudo apt update
+  sudo apt install -y nginx
+fi
+sudo tee /etc/nginx/sites-available/redirect_me <<EOL
+server {
+  listen 80;
+  server_name _;
+  location /redirect_me {
+    return 301 http://;
+  }
+}
+EOL
+sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo sytemct1 reload nginx
