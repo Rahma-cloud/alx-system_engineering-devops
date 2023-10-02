@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#Task 0 
+sudo apt-get update -y
+sudo apt-get install nginx -y
+
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
+
+myString="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
+sudo sed -i "/server_name _;/a $myString" /etc/nginx/sites-available/default
+
+sudo sh -c 'echo "Ceci n'\''est pas une page\n" > /var/www/html/404.html'
+
+myString="error_page 404 /404.html;\n"
+sudo sed -i "/server_name _;/a $myString" /etc/nginx/sites-available/default
+
+myHeader="add_header X-Served-By \$hostname;\n"
+sudo sed -i "/server_name _;/a $myHeader" /etc/nginx/sites-available/default
+
+sudo service nginx start
