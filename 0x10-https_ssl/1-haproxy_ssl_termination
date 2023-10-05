@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Task 1
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install certbot
+sudo service haproxy stop
+sudo certbot certonly --standalone --preferred-challenges http --http-01-port 80 -d onerahma.tech -d www.onerahma.tech
+sudo ls /etc/letsencrypt/live/onerahma.tech
+sudo mkdir -p /etc/haproxy/certs
+DOMAIN='onerahma.tech' sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
+sudo chmod -R go-rwx /etc/haproxy/certs
+sudo add-apt-repository ppa:vbernat/haproxy-1.6
+sudo apt-get update
+sudo apt-get install haproxy
+sudo nano /etc/haproxy/haproxy.cfg
