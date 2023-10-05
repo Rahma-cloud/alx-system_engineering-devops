@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Task 0
+# Function to display information about a subdomain
+display_info() {
+    local domain="$1"
+    local subdomain="$2"
+    local destination="$3"
+
+    echo "The subdomain $subdomain is a A record and points to $destination"
+}
+
+# Function to audit subdomains
+audit_subdomains() {
+    local domain="$1"
+
+    # Subdomains to audit
+    subdomains=("www" "lb-01" "web-01" "web-02")
+
+    for subdomain in "${subdomains[@]}"; do
+        # Resolve subdomain and get record type and IP address
+        result=$(dig +short "$subdomain.$domain")
+        destination=$(echo "$result" | awk 'NR==1{print $1}')
+
+        # Display information about the subdomain
+        display_info "$domain" "$subdomain" "$destination"
+    done
+}
+
+# Check command-line arguments
+if [ "$#" -eq 1 ]; then
+    # When only the domain is provided, audit default subdomains
+    audit_subdomains "$1"
+elif [ "$#" -eq 2 ]; then
+    # When both domain and subdomain are provided, audit the specified subdomain
+    subdomain="$2"
+    result=$(dig +short "$subdomain.$1")
+    destination=$(echo "$result" | awk 'NR==1{print $1}')
+
+    # Display information about the specified subdomain
+    display_info "$1" "$subdomain" "$destination"
+else
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
