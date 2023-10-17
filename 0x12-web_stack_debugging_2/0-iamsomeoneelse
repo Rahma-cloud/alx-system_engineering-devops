@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Task 0
+if [ "$#" -ne 1 ]; then
+    echo "Error"
+    exit 1
+fi
+sudo -u "$1" whoami
