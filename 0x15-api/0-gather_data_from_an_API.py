@@ -28,5 +28,4 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
         sys.exit(1)
-
-display_todo_progress(int(sys.argv[1]))
+    display_todo_progress(int(sys.argv[1]))
