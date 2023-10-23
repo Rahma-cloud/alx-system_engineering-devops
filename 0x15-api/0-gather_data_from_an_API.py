@@ -24,4 +24,4 @@ def display_todo_progress(employee_id):
 
 if __name__ == "__main__":
     employee_id = 2
-    display_todo_progress(employee_id)
+display_todo_progress(employee_id)
