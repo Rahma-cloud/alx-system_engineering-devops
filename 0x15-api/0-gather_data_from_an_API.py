@@ -25,6 +25,7 @@ def display_todo_progress(employee_id):
 
 
 if __name__ == "__main__":
+    """ to check if the correct arguments are passed"""
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
         sys.exit(1)
