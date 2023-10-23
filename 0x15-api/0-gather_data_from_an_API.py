@@ -2,6 +2,7 @@
 """Task 0"""
 
 import requests
+import sys
 
 
 def display_todo_progress(employee_id):
@@ -24,5 +25,8 @@ def display_todo_progress(employee_id):
 
 
 if __name__ == "__main__":
-    employee_id = 2
-    display_todo_progress(employee_id)
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
+
+    display_todo_progress(int(sys.argv[1]))
