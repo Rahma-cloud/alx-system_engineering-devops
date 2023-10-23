@@ -26,4 +26,5 @@ def display_todo_progress(employee_id):
 
 if __name__ == "__main__":
     """ to check if the correct arguments are passed"""
-display_todo_progress(int(sys.argv[1]))
+    if len(sys.argv) == 2:
+        display_todo_progress(int(sys.argv[1]))
