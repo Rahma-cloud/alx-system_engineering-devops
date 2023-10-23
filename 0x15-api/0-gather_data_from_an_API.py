@@ -14,14 +14,14 @@ def display_todo_progress(employee_id):
             f'https://jsonplaceholder.typicode.com/todos?userId={employee_id}'
             ).json()
 
-    completed_tasks = [task for task in todos if task['completed']]
+    completed_tasks = [task for task in todos if task.get('completed')]
     total_tasks = len(todos)
 
-    print(f"Employee {user['name']} is done with tasks\
+    print(f"Employee {user.get('name')} is done with tasks\
             ({len(completed_tasks)}/{total_tasks}):")
 
     for task in completed_tasks:
-        print(f"\t{task['title']}")
+        print(f"\t{task.get('title')}")
 
 
 if __name__ == "__main__":
