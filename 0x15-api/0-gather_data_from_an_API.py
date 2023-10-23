@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-# Task 0
+"""Task 0"""
 
 import requests
 
 
 def display_todo_progress(employee_id):
+    """ display progress of employee"""
     user = requests.get(
             f'https://jsonplaceholder.typicode.com/users/{employee_id}'
             ).json()
