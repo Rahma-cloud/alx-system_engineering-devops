@@ -24,11 +24,14 @@ def recurse(subreddit, hot_list=[], after=None):
             posts = data['data']['children']
             if not posts:
                 return hot_list
+            else:
+                titles = [post['data']['title'] for post in posts]
+                hot_list.extend(titles)
+                after = data['data']['after']
+                return recurse(subreddit, hot_list, after)
         else:
-            titles = [post['data']['title'] for post in posts]
-            hot_list.extend(titles)
-            after = data['data']['after']
-            return recurse(subreddit, hot_list, after)
+            print("Unexpected response structure:", data)
+            return None
 
     except requests.exceptions.HTTPError as e:
         print(f"HTTP Error: {e}")
