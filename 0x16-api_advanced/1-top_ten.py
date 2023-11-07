@@ -24,7 +24,3 @@ def top_ten(subreddit):
             print(None)
     except requests.exceptions.HTTPError as e:
         print(None)
-
-
-if __name__ == "__main__":
-    top_ten(sys.argv[1])
