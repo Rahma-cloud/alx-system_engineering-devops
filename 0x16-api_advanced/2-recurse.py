@@ -30,6 +30,5 @@ def recurse(subreddit, hot_list=[], after=None):
             after = data['data']['after']
             return recurse(subreddit, hot_list, after)
 
-    except requests.exceptions.HTTPError as e:
-        print(f"HTTP Error: {e}")
+    except Exception:
         return None
