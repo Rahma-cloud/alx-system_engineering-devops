@@ -6,7 +6,7 @@ import requests
 
 def top_ten(subreddit):
     """return the titles of ten hot posts"""
-    url = f'https://www.reddit.com/r/{subreddit}/about.json'
+    url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
     headers = {'User-Agent': 'my-app/0.0.1'}
 
     try:
