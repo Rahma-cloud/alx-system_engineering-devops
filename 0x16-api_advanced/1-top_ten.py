@@ -2,7 +2,6 @@
 """Task 1"""
 
 import requests
-import sys
 
 
 def top_ten(subreddit):
