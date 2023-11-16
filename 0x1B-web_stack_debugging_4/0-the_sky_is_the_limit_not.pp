@@ -1,95 +1,27 @@
-user www-data;
-worker_processes auto;
-pid /run/nginx.pid;
+# Puppet Manifest for Nginx configuration
 
-events {
-        worker_connections 1024;
-        # multi_accept on;
+class nginx {
+  # Install Nginx package
+  package { 'nginx':
+    ensure => installed,
+  }
+
+  # Ensure the Nginx service is running
+  service { 'nginx':
+    ensure  => running,
+    enable  => true,
+    require => Package['nginx'],
+  }
+
+  # Copy the Nginx configuration file
+  file { '/etc/nginx/nginx.conf':
+    ensure  => present,
+    source  => 'puppet:///modules/nginx/nginx.conf',
+    require => Package['nginx'],
+    notify  => Service['nginx'],
+  }
 }
 
-http {
+# Apply the nginx class
+include nginx
 
-        ##
-        # Basic Settings
-        ##
-
-        sendfile on;
-        tcp_nopush on;
-        tcp_nodelay on;
-        keepalive_timeout 65;
-        types_hash_max_size 2048;
-        # server_tokens off;
-
-        # server_names_hash_bucket_size 64;
-        # server_name_in_redirect off;
-
-        include /etc/nginx/mime.types;
-        default_type application/octet-stream;
-
-        ##
-        # Logging Settings
-        ##
-
-        access_log /var/log/nginx/access.log;
-        error_log /var/log/nginx/error.log;
-
-        ##
-        # Gzip Settings
-        ##
-
-        gzip on;
-        gzip_disable "msie6";
-
-        # gzip_vary on;
-        # gzip_proxied any;
-        # gzip_comp_level 6;
-        # gzip_buffers 16 8k;
-        # gzip_http_version 1.1;
-        # gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
-
-        ##
-        # nginx-naxsi config
-        ##
-        # Uncomment it if you installed nginx-naxsi
-        ##
-
-        #include /etc/nginx/naxsi_core.rules;
-
-        ##
-        # nginx-passenger config
-        ##
-        # Uncomment it if you installed nginx-passenger
-        ##
-
-        #passenger_root /usr;
-        #passenger_ruby /usr/bin/ruby;
-
-        ##
-        # Virtual Host Configs
-        ##
-
-        include /etc/nginx/conf.d/*.conf;
-        include /etc/nginx/sites-enabled/*;
-}
-
-
-#mail {
-#       # See sample authentication script at:
-#       # http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
-# 
-#       # auth_http localhost/auth.php;
-#       # pop3_capabilities "TOP" "USER";
-#       # imap_capabilities "IMAP4rev1" "UIDPLUS";
-# 
-#       server {
-#               listen     localhost:110;
-#               protocol   pop3;
-#               proxy      on;
-#       }
-# 
-#       server {
-#               listen     localhost:143;
-#               protocol   imap;
-#               proxy      on;
-#       }
-#}
