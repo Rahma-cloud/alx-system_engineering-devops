@@ -44,7 +44,8 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
         server_name _;
-location /hbnb_static { alias /data/web_static/current/; }
+
+        location /hbnb_static { alias /data/web_static/current/; }
         add_header X-Served-By $hostname;
         error_page 404 /404.html;
 
