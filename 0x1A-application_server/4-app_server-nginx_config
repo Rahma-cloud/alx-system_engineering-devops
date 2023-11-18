@@ -73,6 +73,7 @@ location /hbnb_static { alias /data/web_static/current/; }
 
         location /api/v1 {
             proxy_pass http://localhost:5002/api/v1;
+            proxy_redirect off;
         }
 
         # pass PHP scripts to FastCGI server
